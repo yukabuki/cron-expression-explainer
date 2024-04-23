@@ -1215,6 +1215,7 @@ final class DefaultCronExpressionExplainerTest extends TestCase
 			[
 				'cs' => 'czech',
 				'en' => 'english',
+				'sk' => 'slovak',
 			],
 			$explainer->getSupportedLocales(),
 		);
