@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 - Allow PHP 8.3
+- Allow PHP 8.4
 
 ## [1.1.0](https://github.com/orisai/cron-expression-explainer/compare/1.0.0...1.1.0) - 2024-04-23
 
