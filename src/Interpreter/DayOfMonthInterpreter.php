@@ -57,7 +57,6 @@ final class DayOfMonthInterpreter extends BasePartInterpreter
 		$nearest = str_ends_with($value, 'W');
 		if ($nearest) {
 			$value = substr($value, 0, -1);
-			assert($value !== false);
 		}
 
 		$intValue = $this->convertNumericValue($value);

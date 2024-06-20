@@ -65,7 +65,6 @@ final class DayOfWeekInterpreter extends BasePartInterpreter
 		$last = str_ends_with($value, 'L');
 		if ($last) {
 			$value = substr($value, 0, -1);
-			assert($value !== false);
 			assert(!isset($nth));
 		}
 
