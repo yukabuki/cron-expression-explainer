@@ -28,7 +28,7 @@
 		}
 	],
 	"require": {
-		"php": ">=7.4.0 <8.3.0",
+		"php": "7.4 - 8.3",
 		"dragonmantank/cron-expression": "^3.3.0",
 		"symfony/intl": "^5.4.35|^6.4.3|^7.0.3",
 		"symfony/polyfill-php80": "^1.29"
