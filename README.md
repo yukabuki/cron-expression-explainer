@@ -1,11 +1,9 @@
 <h1 align="center">
-	<img src="https://github.com/orisai/.github/blob/main/images/repo_title.png?raw=true" alt="Orisai"/>
-	<br/>
 	Cron Expression Explainer
 </h1>
 
 <p align="center">
-    Human-readable cron expressions
+    Human-readable cron expressions (custom translations support)
 </p>
 
 <p align="center">
@@ -13,22 +11,21 @@
 </p>
 
 <p align="center">
-	💸 If you like Orisai, please <a href="https://orisai.dev/sponsor">make a donation</a>. Thank you!
+	🎨 <a href="CUSTOM_TRANSLATIONS.md">Custom Translations Guide</a> - Learn how to add your own translations!
 </p>
 
 <p align="center">
-	<a href="https://github.com/orisai/cron-expression-explainer/actions?query=workflow:CI+branch:v1.x"><img src="https://github.com/orisai/cron-expression-explainer/actions/workflows/ci.yaml/badge.svg?branch=v1.x"></a>
-	<a href="https://coveralls.io/github/orisai/cron-expression-explainer?branch=v1.x"><img src="https://badgen.net/coveralls/c/github/orisai/cron-expression-explainer/v1.x?cache=300"></a>
-	<a href="https://dashboard.stryker-mutator.io/reports/github.com/orisai/cron-expression-explainer/v1.x"><img src="https://img.shields.io/endpoint?style=flat&url=https://badge-api.stryker-mutator.io/github.com/orisai/cron-expression-explainer/v1.x"></a>
-	<a href="https://packagist.org/packages/orisai/cron-expression-explainer"><img src="https://badgen.net/packagist/dt/orisai/cron-expression-explainer?cache=3600"></a>
-	<a href="https://packagist.org/packages/orisai/cron-expression-explainer"><img src="https://badgen.net/packagist/v/orisai/cron-expression-explainer?cache=3600"></a>
+	🔗 Original project by <a href="https://github.com/orisai/cron-expression-explainer">Orisai</a>
+</p>
+
+<p align="center">
 	<a href="https://choosealicense.com/licenses/mpl-2.0/"><img src="https://badgen.net/badge/license/MPL-2.0/blue?cache=3600"></a>
 <p>
 
 ##
 
 ```php
-use Orisai\CronExpressionExplainer\DefaultCronExpressionExplainer;
+use Yukabuki\CronExpressionExplainer\DefaultCronExpressionExplainer;
 
 $explainer = new DefaultCronExpressionExplainer();
 
@@ -46,4 +43,29 @@ $explainer->explain('* * 15W * *'); // At every minute on a weekday closest to t
 $explainer->explain('* * L * *'); // At every minute on a last day-of-month.
 $explainer->explain('* * LW * *'); // At every minute on a last weekday.
 $explainer->explain('* * * * 7L'); // At every minute on the last Sunday.
+```
+
+## ✨ New Features in This Fork
+
+### 🔍 Automatic Locale Detection
+Locales are automatically detected by scanning the translations directory - no hardcoded lists!
+
+```php
+$locales = $explainer->getSupportedLocales();
+// Automatically finds: cs, en, fr, sk
+```
+
+### 📁 Custom Translation Support
+Add your own translations or override existing ones:
+
+```php
+// Add a directory with custom translations
+$explainer->addTranslationPath('/path/to/custom/translations');
+
+// Use your custom locale
+$explainer->explain('* * * * *', null, null, 'es'); // Spanish
+$explainer->explain('* * * * *', null, null, 'de'); // German
+```
+
+See [CUSTOM_TRANSLATIONS.md](CUSTOM_TRANSLATIONS.md) for detailed guide and examples.
 ```

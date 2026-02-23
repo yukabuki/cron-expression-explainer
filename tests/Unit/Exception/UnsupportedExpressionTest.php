@@ -1,9 +1,9 @@
 <?php declare(strict_types = 1);
 
-namespace Tests\Orisai\CronExpressionExplainer\Unit\Exception;
+namespace Tests\Yukabuki\CronExpressionExplainer\Unit\Exception;
 
 use Exception;
-use Orisai\CronExpressionExplainer\Exception\UnsupportedExpression;
+use Yukabuki\CronExpressionExplainer\Exception\UnsupportedExpression;
 use PHPUnit\Framework\TestCase;
 
 final class UnsupportedExpressionTest extends TestCase

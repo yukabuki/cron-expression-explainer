@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Orisai\CronExpressionExplainer\Exception;
+namespace Yukabuki\CronExpressionExplainer\Exception;
 
 use InvalidArgumentException;
 use Throwable;

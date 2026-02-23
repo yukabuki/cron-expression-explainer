@@ -1,31 +1,35 @@
 <?php declare(strict_types = 1);
 
-namespace Orisai\CronExpressionExplainer;
+namespace Yukabuki\CronExpressionExplainer;
 
 use Cron\CronExpression;
 use DateTimeZone;
 use InvalidArgumentException;
-use Orisai\CronExpressionExplainer\Exception\UnsupportedExpression;
-use Orisai\CronExpressionExplainer\Exception\UnsupportedLocale;
-use Orisai\CronExpressionExplainer\Interpreter\BasePartInterpreter;
-use Orisai\CronExpressionExplainer\Interpreter\DayOfMonthInterpreter;
-use Orisai\CronExpressionExplainer\Interpreter\DayOfWeekInterpreter;
-use Orisai\CronExpressionExplainer\Interpreter\HourInterpreter;
-use Orisai\CronExpressionExplainer\Interpreter\MinuteInterpreter;
-use Orisai\CronExpressionExplainer\Interpreter\MonthInterpreter;
-use Orisai\CronExpressionExplainer\Part\ListPart;
-use Orisai\CronExpressionExplainer\Part\Part;
-use Orisai\CronExpressionExplainer\Part\PartParser;
-use Orisai\CronExpressionExplainer\Part\RangePart;
-use Orisai\CronExpressionExplainer\Part\StepPart;
-use Orisai\CronExpressionExplainer\Part\ValuePart;
-use Orisai\CronExpressionExplainer\Translator\PartTranslator;
+use Yukabuki\CronExpressionExplainer\Exception\UnsupportedExpression;
+use Yukabuki\CronExpressionExplainer\Exception\UnsupportedLocale;
+use Yukabuki\CronExpressionExplainer\Interpreter\BasePartInterpreter;
+use Yukabuki\CronExpressionExplainer\Interpreter\DayOfMonthInterpreter;
+use Yukabuki\CronExpressionExplainer\Interpreter\DayOfWeekInterpreter;
+use Yukabuki\CronExpressionExplainer\Interpreter\HourInterpreter;
+use Yukabuki\CronExpressionExplainer\Interpreter\MinuteInterpreter;
+use Yukabuki\CronExpressionExplainer\Interpreter\MonthInterpreter;
+use Yukabuki\CronExpressionExplainer\Part\ListPart;
+use Yukabuki\CronExpressionExplainer\Part\Part;
+use Yukabuki\CronExpressionExplainer\Part\PartParser;
+use Yukabuki\CronExpressionExplainer\Part\RangePart;
+use Yukabuki\CronExpressionExplainer\Part\StepPart;
+use Yukabuki\CronExpressionExplainer\Part\ValuePart;
+use Yukabuki\CronExpressionExplainer\Translator\PartTranslator;
 use function array_key_exists;
 use function assert;
+use function basename;
+use function glob;
 use function is_numeric;
+use function pathinfo;
 use function str_ends_with;
 use function str_pad;
 use function ucfirst;
+use const PATHINFO_FILENAME;
 use const STR_PAD_LEFT;
 
 final class DefaultCronExpressionExplainer implements CronExpressionExplainer
@@ -47,6 +51,17 @@ final class DefaultCronExpressionExplainer implements CronExpressionExplainer
 
 	private string $defaultLocale = 'en';
 
+	/** @var array<string, string>|null */
+	private ?array $cachedLocales = null;
+
+	/** @var array<string, string> */
+	private static array $localeNames = [
+		'cs' => 'czech',
+		'en' => 'english',
+		'fr' => 'french',
+		'sk' => 'slovak',
+	];
+
 	public function __construct()
 	{
 		$this->parser = new PartParser();
@@ -58,13 +73,48 @@ final class DefaultCronExpressionExplainer implements CronExpressionExplainer
 		$this->dayOfWeekInterpreter = new DayOfWeekInterpreter($this->translator);
 	}
 
+	/**
+	 * Add a custom translation directory
+	 * Translations in custom paths override default translations
+	 *
+	 * @param string $path Absolute path to the directory containing translation files (*.php)
+	 */
+	public function addTranslationPath(string $path): void
+	{
+		$this->translator->addTranslationPath($path);
+		// Clear cache to rescan available locales
+		$this->cachedLocales = null;
+	}
+
+	/**
+	 * Get all supported locales by scanning translation directories
+	 *
+	 * @return array<string, string> Array of locale codes and their names
+	 */
 	public function getSupportedLocales(): array
 	{
-		return [
-			'cs' => 'czech',
-			'en' => 'english',
-			'sk' => 'slovak',
-		];
+		if ($this->cachedLocales !== null) {
+			return $this->cachedLocales;
+		}
+
+		$locales = [];
+
+		// Scan default translations directory
+		$defaultPath = __DIR__ . '/Translator/translations';
+		$files = glob($defaultPath . '/*.php');
+
+		if ($files !== false) {
+			foreach ($files as $file) {
+				$locale = pathinfo($file, PATHINFO_FILENAME);
+				$locales[$locale] = self::$localeNames[$locale] ?? $locale;
+			}
+		}
+
+		// Note: Custom translation paths are handled by PartTranslator
+		// We could scan them here too, but it's simpler to rely on hasLocale() check
+
+		$this->cachedLocales = $locales;
+		return $locales;
 	}
 
 	public function setDefaultLocale(string $locale): void
@@ -78,7 +128,12 @@ final class DefaultCronExpressionExplainer implements CronExpressionExplainer
 	 */
 	private function checkLocaleIsSupported(?string $locale): void
 	{
-		if ($locale !== null && !array_key_exists($locale, $this->getSupportedLocales())) {
+		if ($locale === null) {
+			return;
+		}
+
+		// Check if locale exists in scanned locales or in custom paths
+		if (!array_key_exists($locale, $this->getSupportedLocales()) && !$this->translator->hasLocale($locale)) {
 			throw new UnsupportedLocale($locale);
 		}
 	}

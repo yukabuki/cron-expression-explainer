@@ -1,8 +1,8 @@
 <?php declare(strict_types = 1);
 
-namespace Tests\Orisai\CronExpressionExplainer\Unit\Part;
+namespace Tests\Yukabuki\CronExpressionExplainer\Unit\Part;
 
-use Orisai\CronExpressionExplainer\Part\ValuePart;
+use Yukabuki\CronExpressionExplainer\Part\ValuePart;
 use PHPUnit\Framework\TestCase;
 
 final class ValuePartTest extends TestCase

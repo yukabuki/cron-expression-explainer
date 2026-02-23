@@ -1,8 +1,8 @@
 <?php declare(strict_types = 1);
 
-namespace Tests\Orisai\CronExpressionExplainer\Unit\Exception;
+namespace Tests\Yukabuki\CronExpressionExplainer\Unit\Exception;
 
-use Orisai\CronExpressionExplainer\Exception\UnsupportedLocale;
+use Yukabuki\CronExpressionExplainer\Exception\UnsupportedLocale;
 use PHPUnit\Framework\TestCase;
 
 final class UnsupportedLocaleTest extends TestCase

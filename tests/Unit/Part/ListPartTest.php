@@ -1,11 +1,11 @@
 <?php declare(strict_types = 1);
 
-namespace Tests\Orisai\CronExpressionExplainer\Unit\Part;
+namespace Tests\Yukabuki\CronExpressionExplainer\Unit\Part;
 
-use Orisai\CronExpressionExplainer\Part\ListPart;
-use Orisai\CronExpressionExplainer\Part\RangePart;
-use Orisai\CronExpressionExplainer\Part\StepPart;
-use Orisai\CronExpressionExplainer\Part\ValuePart;
+use Yukabuki\CronExpressionExplainer\Part\ListPart;
+use Yukabuki\CronExpressionExplainer\Part\RangePart;
+use Yukabuki\CronExpressionExplainer\Part\StepPart;
+use Yukabuki\CronExpressionExplainer\Part\ValuePart;
 use PHPUnit\Framework\TestCase;
 
 final class ListPartTest extends TestCase

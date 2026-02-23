@@ -1,11 +1,11 @@
 <?php declare(strict_types = 1);
 
-namespace Tests\Orisai\CronExpressionExplainer\Snapshots;
+namespace Tests\Yukabuki\CronExpressionExplainer\Snapshots;
 
 use DateTimeZone;
 use Generator;
 use Nette\Utils\FileSystem;
-use Orisai\CronExpressionExplainer\DefaultCronExpressionExplainer;
+use Yukabuki\CronExpressionExplainer\DefaultCronExpressionExplainer;
 use function array_key_exists;
 use function array_keys;
 use function file_put_contents;

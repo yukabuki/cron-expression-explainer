@@ -18,7 +18,7 @@ Human-readable cron expressions
 Install with [Composer](https://getcomposer.org)
 
 ```sh
-composer require orisai/cron-expression-explainer
+composer require yukabuki/cron-expression-explainer
 ```
 
 ## Usage
@@ -26,7 +26,7 @@ composer require orisai/cron-expression-explainer
 Explain any cron expression
 
 ```php
-use Orisai\CronExpressionExplainer\DefaultCronExpressionExplainer;
+use Yukabuki\CronExpressionExplainer\DefaultCronExpressionExplainer;
 
 $explainer = new DefaultCronExpressionExplainer();
 
@@ -78,8 +78,9 @@ Translate expression into any supported locale
 ```php
 $explainer->explain('* * * * *', null, null, 'en'); // At every minute.
 $explainer->explain('* * * * *', null, null, 'cs'); // Každou minutu.
+$explainer->explain('* * * * *', null, null, 'fr'); // Chaque minute.
 $explainer->explain('* * * * *', null, null, 'sk'); // Každú minútu.
-$explainer->getSupportedLocales(); // array<string, string> e.g. ['en' => 'english', 'cs' => 'czech', /* ... */]
+$explainer->getSupportedLocales(); // array<string, string> e.g. ['en' => 'english', 'cs' => 'czech', 'fr' => 'french', /* ... */]
 $explainer->setDefaultLocale('cs');
 ```
 
@@ -87,9 +88,42 @@ Currently supported locales are:
 
 - `cs` - czech / čeština
 - `en` - english
+- `fr` - french / français
 - `sk` - slovak / slovenčina
 
 In case given locale is not supported, the `UnsupportedLocale` exception is thrown.
+
+### Custom Translations
+
+You can add your own translations or override existing ones by providing a custom translation directory:
+
+```php
+$explainer = new DefaultCronExpressionExplainer();
+
+// Add a directory containing custom translation files
+$explainer->addTranslationPath('/path/to/custom/translations');
+
+// Now you can use custom locales
+$explainer->explain('* * * * *', null, null, 'es'); // Uses custom Spanish translation
+```
+
+Translation files should be PHP files that return an array of translation keys. See existing translation files in `src/Translator/translations/` for the complete list of required keys.
+
+**Example custom translation file** (`/path/to/custom/translations/es.php`):
+
+```php
+<?php declare(strict_types = 1);
+
+return [
+    'listSeparator' => ', ',
+    'list' => '{values} y {lastValue}',
+    'every-minute' => 'cada minuto',
+    'step-all-minute' => 'cada {step} minutos',
+    // ... other translation keys
+];
+```
+
+Custom translations can also **override** existing translations. If you provide a translation file with the same locale code as a built-in locale, your translations will take precedence.
 
 ## Handling unsupported expressions
 
@@ -97,7 +131,7 @@ Syntax may not be recognized as valid or may just be some complex variant that w
 For that case you may catch the `UnsupportedExpression` exception.
 
 ```php
-use Orisai\CronExpressionExplainer\Exception\UnsupportedExpression;
+use Yukabuki\CronExpressionExplainer\Exception\UnsupportedExpression;
 
 try {
 	$explained = $explainer->explain('not supported');
@@ -117,7 +151,8 @@ For example with [orisai/scheduler](https://github.com/orisai/scheduler)!
 To add support for a new locale:
 
 - create file in `src/Translator/translations` and add translations for all the keys used in other translation files
-- add it to supported locales in `DefaultCronExpressionExplainer`
+- locales are now automatically detected by scanning the translations directory
+- optionally add the locale name to `DefaultCronExpressionExplainer::$localeNames` for a human-readable name
 - generate translations via `make update-snapshots`
 - verify that the generated test translations in `tests/Snapshots/translations` make sense and match their configuration
 - run `make tests`, it should pass now :)

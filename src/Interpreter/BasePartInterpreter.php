@@ -1,13 +1,13 @@
 <?php declare(strict_types = 1);
 
-namespace Orisai\CronExpressionExplainer\Interpreter;
+namespace Yukabuki\CronExpressionExplainer\Interpreter;
 
-use Orisai\CronExpressionExplainer\Part\ListPart;
-use Orisai\CronExpressionExplainer\Part\Part;
-use Orisai\CronExpressionExplainer\Part\RangePart;
-use Orisai\CronExpressionExplainer\Part\StepPart;
-use Orisai\CronExpressionExplainer\Part\ValuePart;
-use Orisai\CronExpressionExplainer\Translator\PartTranslator;
+use Yukabuki\CronExpressionExplainer\Part\ListPart;
+use Yukabuki\CronExpressionExplainer\Part\Part;
+use Yukabuki\CronExpressionExplainer\Part\RangePart;
+use Yukabuki\CronExpressionExplainer\Part\StepPart;
+use Yukabuki\CronExpressionExplainer\Part\ValuePart;
+use Yukabuki\CronExpressionExplainer\Translator\PartTranslator;
 use function array_key_first;
 use function array_key_last;
 

@@ -1,6 +1,6 @@
 {
-	"name": "orisai/cron-expression-explainer",
-	"description": "Human-readable cron expressions",
+	"name": "yukabuki/cron-expression-explainer",
+	"description": "Human-readable cron expressions (Fork with French translation)",
 	"keywords": [
 		"cron",
 		"crontab",
@@ -16,19 +16,24 @@
 		"scheduling",
 		"scheduler",
 		"task",
-		"translation"
+		"translation",
+		"french"
 	],
 	"type": "library",
 	"license": "MPL-2.0",
-	"homepage": "https://github.com/orisai/cron-expression-explainer",
+	"homepage": "https://gitlab.com/yukabuki/cron-expression-explainer",
 	"authors": [
+		{
+			"name": "Yukabuki",
+			"homepage": "https://gitlab.com/yukabuki"
+		},
 		{
 			"name": "Marek Bartoš",
 			"homepage": "https://github.com/mabar"
 		}
 	],
 	"require": {
-		"php": "7.4 - 8.4",
+		"php": ">=8.0",
 		"dragonmantank/cron-expression": "^3.3.0",
 		"symfony/intl": "^5.4.35|^6.4.3|^7.0.3",
 		"symfony/polyfill-php80": "^1.29"
@@ -48,12 +53,12 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Orisai\\CronExpressionExplainer\\": "src"
+			"Yukabuki\\CronExpressionExplainer\\": "src"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"Tests\\Orisai\\CronExpressionExplainer\\": "tests"
+			"Tests\\Yukabuki\\CronExpressionExplainer\\": "tests"
 		}
 	},
 	"minimum-stability": "dev",

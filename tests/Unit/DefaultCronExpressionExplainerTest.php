@@ -1,13 +1,13 @@
 <?php declare(strict_types = 1);
 
-namespace Tests\Orisai\CronExpressionExplainer\Unit;
+namespace Tests\Yukabuki\CronExpressionExplainer\Unit;
 
 use Cron\DayOfMonthField;
 use DateTimeZone;
 use Generator;
-use Orisai\CronExpressionExplainer\DefaultCronExpressionExplainer;
-use Orisai\CronExpressionExplainer\Exception\UnsupportedExpression;
-use Orisai\CronExpressionExplainer\Exception\UnsupportedLocale;
+use Yukabuki\CronExpressionExplainer\DefaultCronExpressionExplainer;
+use Yukabuki\CronExpressionExplainer\Exception\UnsupportedExpression;
+use Yukabuki\CronExpressionExplainer\Exception\UnsupportedLocale;
 use PHPUnit\Framework\TestCase;
 
 final class DefaultCronExpressionExplainerTest extends TestCase
@@ -1215,6 +1215,7 @@ final class DefaultCronExpressionExplainerTest extends TestCase
 			[
 				'cs' => 'czech',
 				'en' => 'english',
+				'fr' => 'french',
 				'sk' => 'slovak',
 			],
 			$explainer->getSupportedLocales(),

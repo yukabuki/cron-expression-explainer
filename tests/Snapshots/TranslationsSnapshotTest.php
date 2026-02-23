@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Tests\Orisai\CronExpressionExplainer\Snapshots;
+namespace Tests\Yukabuki\CronExpressionExplainer\Snapshots;
 
 use Generator;
 use PHPUnit\Framework\TestCase;

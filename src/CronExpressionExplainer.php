@@ -1,10 +1,10 @@
 <?php declare(strict_types = 1);
 
-namespace Orisai\CronExpressionExplainer;
+namespace Yukabuki\CronExpressionExplainer;
 
 use DateTimeZone;
-use Orisai\CronExpressionExplainer\Exception\UnsupportedExpression;
-use Orisai\CronExpressionExplainer\Exception\UnsupportedLocale;
+use Yukabuki\CronExpressionExplainer\Exception\UnsupportedExpression;
+use Yukabuki\CronExpressionExplainer\Exception\UnsupportedLocale;
 
 interface CronExpressionExplainer
 {

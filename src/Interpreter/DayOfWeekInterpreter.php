@@ -1,8 +1,8 @@
 <?php declare(strict_types = 1);
 
-namespace Orisai\CronExpressionExplainer\Interpreter;
+namespace Yukabuki\CronExpressionExplainer\Interpreter;
 
-use Orisai\CronExpressionExplainer\Part\ValuePart;
+use Yukabuki\CronExpressionExplainer\Part\ValuePart;
 use function assert;
 use function explode;
 use function in_array;
