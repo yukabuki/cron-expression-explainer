@@ -30,12 +30,12 @@ return [
 	'every-minute' => 'chaque minute',
 	'before-minute' => '',
 	'minute' => '{minute}',
-	'minute-named' => 'minute {minute}',
-	'before-hour' => ' ',
+	'minute-named' => 'à la minute {minute}',
+	'before-hour' => ', ',
 	'hour' => '{hour}',
 	'hour-named' => 'heure {hour}',
 	'between-day-of-month-and-week' => ' et',
-	'before-day-of-week' => ' ',
+	'before-day-of-week' => ', ',
 	'day-of-week' => '{dayNumber, select,
       1 {lundi}
       2 {mardi}
