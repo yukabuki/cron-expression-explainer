@@ -53,7 +53,7 @@ return [
 	'day-of-week-last' => 'le dernier {day}',
 	'before-day-of-month' => ' le ',
 	'day-of-month' => '{day}',
-	'day-of-month-named' => 'jour du mois {day}',
+	'day-of-month-named' => 'jour {day} du mois',
 	'day-of-month-last-day' => 'le dernier jour du mois',
 	'day-of-month-last-weekday' => 'le dernier jour ouvrable',
 	'day-of-month-nearest-weekday' => 'le jour ouvrable le plus proche du {day, selectordinal,

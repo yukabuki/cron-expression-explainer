@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-	🎨 <a href="CUSTOM_TRANSLATIONS.md">Custom Translations Guide</a> - Learn how to add your own translations!
+	🎨 <a href="docs/CUSTOM_TRANSLATIONS.md">Custom Translations Guide</a> - Learn how to add your own translations!
 </p>
 
 <p align="center">
@@ -67,5 +67,4 @@ $explainer->explain('* * * * *', null, null, 'es'); // Spanish
 $explainer->explain('* * * * *', null, null, 'de'); // German
 ```
 
-See [CUSTOM_TRANSLATIONS.md](CUSTOM_TRANSLATIONS.md) for detailed guide and examples.
-```
+See [CUSTOM_TRANSLATIONS.md](docs/CUSTOM_TRANSLATIONS.md) for detailed guide and examples.
