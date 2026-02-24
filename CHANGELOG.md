@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased](https://gitlab.com/yukabuki/cron-expression-explainer/compare/2.0.0...v1.x)
 
+## [2.0.3](https://gitlab.com/yukabuki/cron-expression-explainer/releases/tag/2.0.3) - 2026-02-24
+
+### Removed
+- CI workflows and dev dependencies
+
 ## [2.0.2](https://gitlab.com/yukabuki/cron-expression-explainer/releases/tag/2.0.2) - 2026-02-23
 
 ### Fixed
